@@ -1,7 +1,7 @@
 # dotfiles
 This is git-initset-script ver: 1.0
 
-- Attention notis
+- Attention notice
 If you alredy setting .zshrc , this script remove your setting .
 
 ## Dependency
@@ -20,8 +20,9 @@ for example .zshrc → .bashrc
 ```
 $ sh git-initset-script.sh
 ```
-setting.
-Done.
+setting.  
+
+Done.  
 
 ## License
 Copyright (c) 2021 Kazuya yuda.

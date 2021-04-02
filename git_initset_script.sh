@@ -9,8 +9,8 @@
 This scripts target shell is only zsh , so if you want to use script for bash , please regulation yourself .
 for example .zshrc → .bashrc
 
-- Attention notis
-If you alredy setting .zshrc , this script remove your setting .
+- Attention notice
+If you already setting .zshrc , this script remove your setting .
 COMMENT_OUT
 
 /bin/echo "+ Make .zshrc on home"
@@ -20,7 +20,7 @@ cat ./settingfile > ~/.zshrc
 /bin/echo "+ Make dir ~/.zsh/completion (add p option)"
 mkdir -p ~/.zsh/completion/
 
-/bin/echo "+ Dowmload git-prompt.sh"
+/bin/echo "+ Download git-prompt.sh"
 curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 mv ./git-prompt.sh ~/.zsh/completion/
 
