@@ -1,5 +1,16 @@
 #!/bin/zsh
 
+# git config set email validation .
+function emailValid() {
+    ARGS=${1}
+    case $ARGS in
+        # xxx@xxx.xxx validation format .
+     *@?*.?*) echo "accept" ;;
+      *) echo "Your input email address data is incorrect format , Please retry ."; /bin/echo -n "» " ; read email; emailValid $email ;;
+    esac
+}
+
+# Explain this tool .
 /bin/echo "************************************************"
 /bin/echo "Welcome to git-initset-script ver: 1.0"
 /bin/echo "Caution! , this script support only macOS's zsh ."
@@ -30,7 +41,7 @@ mv ./git-prompt.sh ~/.zsh/completion/
 whoami
 /bin/echo "*********"
 
-# set whoami.
+# Set whoami.
 git config --global user.name `whoami`
 
 /bin/echo "+ Please input setting email ."
@@ -38,8 +49,9 @@ git config --global user.name `whoami`
 /bin/echo -n "» "
 
 read email
+emailValid $email
 
-# set input email.
+# Set input email.
 git config --global user.email $email
 
 echo "Done , Please check any setting files yourself ."
