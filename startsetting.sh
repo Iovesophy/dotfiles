@@ -1,10 +1,11 @@
-#!/bin/zsh
+#!/bin/sh
+set -eux
 
 # Explain this tool .
-/bin/echo "************************************************"
-/bin/echo "Welcome to dotfile-initset-script ver: 1.0"
-/bin/echo "Caution! , this script support only macOS's zsh ."
-/bin/echo "************************************************"
+printf "************************************************\n"
+printf "Welcome to dotfile-initset-script ver: 1.0\n"
+printf "Caution! , this script support only macOS's zsh .\n"
+printf "************************************************\n"
 
 <<COMMENT_OUT
 This scripts target shell is only zsh , so if you want to use script for bash , please regulation yourself .
@@ -14,61 +15,59 @@ for example .zshrc → .bashrc
 If you already setting .zshrc , this script remove your setting .
 COMMENT_OUT
 
-/bin/echo "+ Make .zshrc on home"
-ln -nfs `pwd`/zshrc ~/.zshrc
+printf "Make .zshrc on home\n"
+ln -nfs $(pwd)/zshrc ~/.zshrc
     
-/bin/echo "+ Make dir ~/.zsh/completion (add p option)"
+printf "Make dir ~/.zsh/completion (add p option)\n"
 mkdir -p ~/.zsh/completion/
 
-/bin/echo "+ Download git-prompt.sh"
-curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.zsh/completion/
+printf "Download git-prompt.sh\n"
+curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh 
+mv $(pwd)/git-prompt.sh ~/.zsh/completion/git-prompt.sh
 
-/bin/echo "+ Setting global user.name , user.email" 
-/bin/echo "+ Add whoami username to user.name"
-/bin/echo "*********"
+printf "Setting global user.name , user.email\n" 
+printf "Add whoami username to user.name\n"
+printf "*********\n"
 whoami
-/bin/echo "*********"
+printf "*********\n"
 
 # Set name.
-# git config --global user.name `whoami`
-name=`whoami`
-email=`cat gitconfig | tail -n 1`
-rm `pwd`/gitconfig
-echo "[user]" >> `pwd`/gitconfig
-echo "        name = ${name}" >> `pwd`/gitconfig
+name=$(whoami)
+email=$(cat gitconfig | head -n 3 | tail -n 1)
+rm $(pwd)/gitconfig
+printf "[user]\n" >> $(pwd)/gitconfig
+printf "        name = ${name}\n" >> $(pwd)/gitconfig
 
 # Set email.
-echo $1
-if [ -n "$1" ]; then
-    # git config --global user.email $1
-    echo "        email = ${1}" >> `pwd`/gitconfig
+if [[ -z "${1:-}" ]]; then
+    printf "${email}\n" >> $(pwd)/gitconfig
+    printf "No email setting.\n"
 else
-    echo No email setting.
-    echo "${email}" >> `pwd`/gitconfig
+    printf "        email = ${1}\n" >> `pwd`/gitconfig
 fi
-ln -nfs `pwd`/gitconfig ~/.gitconfig
+cat $(pwd)/gitconfig_addon >> $(pwd)/gitconfig
 
-/bin/echo "+ Make .zshrc on home"
+ln -nfs $(pwd)/gitconfig ~/.gitconfig
+
+printf "Make .zshrc on home\n"
 mkdir -p ~/.zsh/completion
 
-/bin/echo "+ Download _docker-compose"
-curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
-
+printf "_docker-compose\n"
 etc=/Applications/Docker.app/Contents/Resources/etc
-ln -s $etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
-ln -s $etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
+ln -nfs $etc/docker.zsh-completion ~/.zsh/completion/_docker
+ln -nfs $etc/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
+#curl -LO https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
-/bin/echo "+ Make .vimrc on home"
+printf "Make .vimrc on home\n"
 touch ~/.vimrc
 
-/bin/echo "+ symlink .vimrc on home"
-ln -nfs `pwd`/vimrc ~/.vimrc
-ln -nfs `pwd`/vimrc ~/vimrc
+printf "symlink .vimrc on home\n"
+ln -nfs $(pwd)/vimrc ~/.vimrc
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 exec $SHELL -l
 
-echo "Done , Please check any setting files yourself ."
-echo "Start your happy Coding life . 🍀 "
+printf "Done , Please check any setting files yourself .\n"
+printf "Start your happy Coding life . 🍀 \n"
