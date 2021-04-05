@@ -1,15 +1,5 @@
 #!/bin/zsh
 
-# git config set email validation .
-function emailValid() {
-    ARGS=${1}
-    case $ARGS in
-        # xxx@xxx.xxx validation format .
-     *@?*.?*) echo "accept" ;;
-      *) echo "Your input email address data is incorrect format , Please retry ."; /bin/echo -n "» " ; read email; emailValid $email ;;
-    esac
-}
-
 # Explain this tool .
 /bin/echo "************************************************"
 /bin/echo "Welcome to git-initset-script ver: 1.0"
@@ -25,15 +15,16 @@ If you already setting .zshrc , this script remove your setting .
 COMMENT_OUT
 
 /bin/echo "+ Make .zshrc on home"
-touch ~/.zshrc
-cat ./settingfile > ~/.zshrc
+ln -nfs `pwd`/zshrc ~/.zshrc
     
 /bin/echo "+ Make dir ~/.zsh/completion (add p option)"
 mkdir -p ~/.zsh/completion/
 
 /bin/echo "+ Download git-prompt.sh"
-curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-mv ./git-prompt.sh ~/.zsh/completion/
+curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.zsh/completion/
+
+/bin/echo "+ Download _docker-compose"
+curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
 /bin/echo "+ Setting global user.name , user.email" 
 /bin/echo "+ Add whoami username to user.name"
@@ -41,19 +32,24 @@ mv ./git-prompt.sh ~/.zsh/completion/
 whoami
 /bin/echo "*********"
 
-# Set whoami.
-git config --global user.name `whoami`
+# Set name.
+# git config --global user.name `whoami`
+name=`whoami`
+email=`cat gitconfig | tail -n 1`
+rm `pwd`/gitconfig
+echo "[user]" >> `pwd`/gitconfig
+echo "        name = ${name}" >> `pwd`/gitconfig
 
-/bin/echo "+ Please input setting email ."
-/bin/echo "※You can use private email on github and any git cloud service's private email ."
-/bin/echo -n "» "
-
-read email
-emailValid $email
-
-# Set input email.
-git config --global user.email $email
+# Set email.
+echo $1
+if [ -n "$1" ]; then
+    # git config --global user.email $1
+    echo "        email = ${1}" >> `pwd`/gitconfig
+else
+    echo No email setting.
+    echo "${email}" >> `pwd`/gitconfig
+fi
+ln -nfs `pwd`/gitconfig ~/.gitconfig
 
 echo "Done , Please check any setting files yourself ."
 echo "Start your happy Git life . 🍀 "
-
