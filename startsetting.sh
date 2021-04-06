@@ -33,21 +33,21 @@ printf "*********\n"
 
 # Set name.
 name=$(whoami)
-email=$(cat gitconfig | head -n 3 | tail -n 1)
-rm $(pwd)/gitconfig
-printf "[user]\n" >> $(pwd)/gitconfig
-printf "        name = ${name}\n" >> $(pwd)/gitconfig
+email=$(cat .gitconfig | head -n 3 | tail -n 1)
+rm $(pwd)/.gitconfig
+printf "[user]\n" >> $(pwd)/.gitconfig
+printf "        name = ${name}\n" >> $(pwd)/.gitconfig
 
 # Set email.
 if [[ -z "${1:-}" ]]; then
-    printf "${email}\n" >> $(pwd)/gitconfig
+    printf "${email}\n" >> $(pwd)/.gitconfig
     printf "No email setting.\n"
 else
-    printf "        email = ${1}\n" >> `pwd`/gitconfig
+    printf "        email = ${1}\n" >> `pwd`/.gitconfig
 fi
-cat $(pwd)/gitconfig_addon >> $(pwd)/gitconfig
+cat $(pwd)/gitconfig_addon >> $(pwd)/.gitconfig
 
-ln -nfs $(pwd)/gitconfig ~/.gitconfig
+ln -nfs $(pwd)/.gitconfig ~/.gitconfig
 
 printf "Make .zshrc on home\n"
 mkdir -p ~/.zsh/completion
