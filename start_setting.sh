@@ -16,14 +16,14 @@ If you already setting .zshrc , this script remove your setting .
 COMMENT_OUT
 
 printf "Make .zshrc on home\n"
-ln -nfs $(pwd)/zshrc ~/.zshrc
+cp zshrc ~/.zshrc
 
-printf "Make dir ~/.zsh/completion (add p option)\n"
-mkdir -p ~/.zsh/completion/
+printf "Make .zshrc on home\n"
+mkdir -p ~/.zsh/completion
 
 printf "Download git-prompt.sh\n"
 curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-mv $(pwd)/git-prompt.sh ~/.zsh/completion/git-prompt.sh
+mv git-prompt.sh ~/.zsh/completion/
 
 printf "Setting global user.name , user.email\n"
 printf "Add whoami username to user.name\n"
@@ -31,23 +31,17 @@ printf "*********\n"
 whoami
 printf "*********\n"
 
+cp gitconfig_addon ~/.gitconfig
+
 # Set name.
-readonly NAME=$(whoami)
-rm $(pwd)/.gitconfig
-git config --global user.name $NAME
+git config --global user.name $(whoami)
 
 # Set email.
-if [[ -z "${1:-}" ]]; then
+if [ -z "${1:-}" ]; then
     printf "No email setting.\n"
 else
     git config --global user.email $1
 fi
-cat $(pwd)/gitconfig_addon >> $(pwd)/.gitconfig
-
-ln -nfs $(pwd)/.gitconfig ~/.gitconfig
-
-printf "Make .zshrc on home\n"
-mkdir -p ~/.zsh/completion
 
 printf "_docker-compose\n"
 readonly ETC=/Applications/Docker.app/Contents/Resources/etc
@@ -55,15 +49,11 @@ ln -nfs $ETC/docker.zsh-completion ~/.zsh/completion/_docker
 ln -nfs $ETC/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
-printf "symlink .vimrc on home\n"
-ln -nfs $(pwd)/vimrc ~/.vimrc
-ln -nfs $(pwd)/vimrc ~/.config/nvim/init.vim
+cp vimrc ~/.vimrc
+cp vimrc ~/.config/nvim/init.vim
 
 # vimのプラグインマネージャー vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-exec $SHELL -l
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "Done , Please check any setting files yourself .\n"
 printf "Start your happy Coding life . 🍀 \n"
