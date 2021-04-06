@@ -59,10 +59,9 @@ ln -nfs $etc/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
 #curl -LO https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
-touch ~/.vimrc
-
 printf "symlink .vimrc on home\n"
 ln -nfs $(pwd)/vimrc ~/.vimrc
+ln -nfs $(pwd)/vimrc ~/.config/nvim/init.vim
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

@@ -7,7 +7,20 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 
+# ls
 alias ls='ls -GF'
 export CLICOLOR=1;
 export LSCOLORS=gxfxcxdxbxegedabagacad;
- 
+
+# Shortcuts
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias g="git"
+
+ # Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -" # you can input only - for ref cd hist
