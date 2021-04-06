@@ -17,33 +17,30 @@ COMMENT_OUT
 
 printf "Make .zshrc on home\n"
 ln -nfs $(pwd)/zshrc ~/.zshrc
-    
+
 printf "Make dir ~/.zsh/completion (add p option)\n"
 mkdir -p ~/.zsh/completion/
 
 printf "Download git-prompt.sh\n"
-curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh 
+curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 mv $(pwd)/git-prompt.sh ~/.zsh/completion/git-prompt.sh
 
-printf "Setting global user.name , user.email\n" 
+printf "Setting global user.name , user.email\n"
 printf "Add whoami username to user.name\n"
 printf "*********\n"
 whoami
 printf "*********\n"
 
 # Set name.
-name=$(whoami)
-email=$(cat .gitconfig | head -n 3 | tail -n 1)
+readonly NAME=$(whoami)
 rm $(pwd)/.gitconfig
-printf "[user]\n" >> $(pwd)/.gitconfig
-printf "        name = ${name}\n" >> $(pwd)/.gitconfig
+git config --global user.name $NAME
 
 # Set email.
 if [[ -z "${1:-}" ]]; then
-    printf "${email}\n" >> $(pwd)/.gitconfig
     printf "No email setting.\n"
 else
-    printf "        email = ${1}\n" >> `pwd`/.gitconfig
+    git config --global user.email $1
 fi
 cat $(pwd)/gitconfig_addon >> $(pwd)/.gitconfig
 
@@ -53,16 +50,16 @@ printf "Make .zshrc on home\n"
 mkdir -p ~/.zsh/completion
 
 printf "_docker-compose\n"
-etc=/Applications/Docker.app/Contents/Resources/etc
-ln -nfs $etc/docker.zsh-completion ~/.zsh/completion/_docker
-ln -nfs $etc/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
-#curl -LO https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+readonly ETC=/Applications/Docker.app/Contents/Resources/etc
+ln -nfs $ETC/docker.zsh-completion ~/.zsh/completion/_docker
+ln -nfs $ETC/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
 printf "symlink .vimrc on home\n"
 ln -nfs $(pwd)/vimrc ~/.vimrc
 ln -nfs $(pwd)/vimrc ~/.config/nvim/init.vim
 
+# vimのプラグインマネージャー vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
