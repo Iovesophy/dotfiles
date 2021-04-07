@@ -1,7 +1,4 @@
 "vim-plug Start.  https://github.com/junegunn/vim-plug
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 " ruby https://vimawesome.com/plugin/vim-ruby
 Plug 'vim-ruby/vim-ruby'
@@ -44,20 +41,15 @@ set showmatch
 set laststatus=2
 set wildmode=list:longest
 set title
-" 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
 syntax enable
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " env settings
-
-
 " kannokanno/previm
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'open -a Google\ Chrome'
-" ctrl pでプレビュー
 nnoremap <silent> <C-p> :PrevimOpen<CR>
-
 " tyru/open-browser.vim
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
