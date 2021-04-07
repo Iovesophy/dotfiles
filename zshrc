@@ -19,5 +19,5 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
+alias ~="cd ~" 
 alias -- -="cd -" # you can input only - for ref cd hist
