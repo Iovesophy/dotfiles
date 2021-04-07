@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eux
+
 <<COMMENT_OUT
 This scripts target shell is only zsh , so if you want to use script for bash , please regulation yourself .
 for example .zshrc → .bashrc
@@ -16,11 +17,11 @@ printf "Make .zshrc on home\n"
 cp zshrc ~/.zshrc
 mkdir -p ~/.zsh/completion
 printf "Download git-prompt.sh\n"
-curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-mv git-prompt.sh ~/.zsh/completion/
-printf "_docker-compose\n"
+curl -LO ~/.zsh/completion https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+printf "_docker\n"
 readonly ETC=/Applications/Docker.app/Contents/Resources/etc
 ln -nfs $ETC/docker.zsh-completion ~/.zsh/completion/_docker
+printf "_docker-compose\n"
 ln -nfs $ETC/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
