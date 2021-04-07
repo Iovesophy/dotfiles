@@ -18,11 +18,10 @@ for example .zshrc → .bashrc
 + Chenge directory on this Repository.
 + Input this command.
 ```
-$ sh git-initset-script.sh
+$ sh start_setting.sh
 ```
-setting.  
-
-Done.  
++ Setting.
++ Done.
 
 ## License
 Copyright (c) 2021 Kazuya yuda.
@@ -34,4 +33,3 @@ kazuya yuda.
 
 ## References
 git-prompt.sh  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-
