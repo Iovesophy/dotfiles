@@ -14,10 +14,10 @@ printf "Caution! , this script support only macOS's zsh .\n"
 printf "************************************************\n"
 
 printf "Make .zshrc on home\n"
-ln -nfs zshrc ~/.zshrc
+ln -nfs $(pwd)/zshrc ~/.zshrc
 mkdir -p ~/.zsh/completion
 printf "Download git-prompt.sh\n"
-curl -LO ~/.zsh/completion https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+curl -fLo ~/.zsh/completion/git-prompt.sh --create-dirs https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 printf "_docker\n"
 readonly ETC=/Applications/Docker.app/Contents/Resources/etc
 ln -nfs $ETC/docker.zsh-completion ~/.zsh/completion/_docker
@@ -25,7 +25,7 @@ printf "_docker-compose\n"
 ln -nfs $ETC/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
-ln -nfs vimrc ~/.vimrc
+ln -nfs $(pwd)/vimrc ~/.vimrc
 # vim plugin manager vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
