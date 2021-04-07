@@ -16,6 +16,7 @@ export LSCOLORS=gxfxcxdxbxegedabagacad;
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias g="git"
+alias history="history 0"
 
  # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
