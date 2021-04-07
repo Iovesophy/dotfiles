@@ -14,7 +14,6 @@ printf "************************************************\n"
 
 printf "Make .zshrc on home\n"
 cp zshrc ~/.zshrc
-printf "Make .zshrc on home\n"
 mkdir -p ~/.zsh/completion
 printf "Download git-prompt.sh\n"
 curl -LO https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
