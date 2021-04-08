@@ -18,11 +18,9 @@ ln -nfs $(pwd)/zshrc ~/.zshrc
 mkdir -p ~/.zsh/completion
 printf "Download git-prompt.sh\n"
 curl -fLo ~/.zsh/completion/git-prompt.sh --create-dirs https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-printf "_docker\n"
-readonly ETC=/Applications/Docker.app/Contents/Resources/etc
-ln -nfs $ETC/docker.zsh-completion ~/.zsh/completion/_docker
-printf "_docker-compose\n"
-ln -nfs $ETC/docker-compose.zsh-completion ~/.zsh/completion/_docker-compose
+
+printf "docker\n"
+curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
 ln -nfs $(pwd)/vimrc ~/.vimrc
