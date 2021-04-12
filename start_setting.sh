@@ -40,8 +40,5 @@ else
     git config --global user.email $1
 fi
 
-#golang completion
-go get github.com/nsf/gocode
-
 printf "Done , Please check any setting files yourself .\n"
 printf "Start your happy Coding life . 🍀 \n"

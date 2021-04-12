@@ -1,7 +1,6 @@
 "vim-plug Start.  https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'lambdalisue/gina.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 " vim-plug Fin.
 nnoremap <Space>.
@@ -31,8 +30,4 @@ nnoremap j gj
 nnoremap k gk
 syntax enable
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-" golang completion
-set rtp+=$GOROOT/misc/vim
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-set completeopt=menu,preview
 " env settings
