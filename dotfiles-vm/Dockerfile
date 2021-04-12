@@ -2,11 +2,12 @@ FROM ubuntu
 
 ENV DEBIAN_FRONTEND=noninteractive
 # timezone setting
-RUN apt-get update && apt-get install -y tzdata
+RUN yes | apt-get update
+RUN yes | apt-get install tzdata
 ENV TZ=Asia/Tokyo
 
-RUN apt-get update \
-    && apt-get install -y \
+RUN yes | apt-get update
+RUN yes | apt-get install \
     curl \
     git \
     vim \
@@ -23,3 +24,11 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 RUN yes | add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 RUN yes | apt-get update
 RUN yes | apt-get install docker-ce
+
+# install golang
+RUN yes | sudo add-apt-repository ppa:longsleep/golang-backports
+RUN yes | sudo apt update
+RUN yes | sudo apt install golang-go
+
+# clone dotfiles
+RUN git clone https://github.com/Iovesophy/dotfiles.git
