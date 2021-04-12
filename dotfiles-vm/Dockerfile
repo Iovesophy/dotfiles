@@ -31,4 +31,4 @@ RUN yes | sudo apt update
 RUN yes | sudo apt install golang-go
 
 # clone dotfiles
-RUN git clone https://github.com/Iovesophy/dotfiles.git
+RUN git clone https://github.com/Iovesophy/dotfiles.git /root/dotfiles
