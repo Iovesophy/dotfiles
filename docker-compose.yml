@@ -14,7 +14,7 @@ services:
           ./start_setting.sh;
           if [ `md5sum /root/dotfiles/zshrc | awk '{print $$1}'` = `md5sum /root/.zshrc | awk '{print $$1}'` ] &&
           [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ] && 
-          [ `md5sum /root/dotfiles/gitconfig | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
+          [ `md5sum /root/dotfiles/.gitconfig_set | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
           then echo Done; else exit 1; fi"
         # 2回start_setting.shを動かしても同じ結果になるか
         command: >
@@ -23,5 +23,5 @@ services:
           ./start_setting.sh;
           if [ `md5sum /root/dotfiles/zshrc | awk '{print $$1}'` = `md5sum /root/.zshrc | awk '{print $$1}'` ] &&
           [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ] && 
-          [ `md5sum /root/dotfiles/gitconfig | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
+          [ `md5sum /root/dotfiles/.gitconfig_set | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
           then echo Done; else exit 1; fi"
