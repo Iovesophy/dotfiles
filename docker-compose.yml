@@ -1,0 +1,27 @@
+version: "3"
+services:
+    dotfiles-vm:
+        build: dotfiles-vm
+        container_name: "dotfiles-vm"
+        tty: true
+        # start_setting.shが正常終了するか
+        command: >
+          zsh -c "cd /root/dotfiles;
+          ./start_setting.sh"
+        # シンボリックリンクを貼っている各種設定ファイルに破損がないかチェック
+        command: >
+          zsh -c "cd /root/dotfiles;
+          ./start_setting.sh;
+          if [ `md5sum /root/dotfiles/zshrc | awk '{print $$1}'` = `md5sum /root/.zshrc | awk '{print $$1}'` ] &&
+          [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ] && 
+          [ `md5sum /root/dotfiles/gitconfig | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
+          then echo Done; else exit 1; fi"
+        # 2回start_setting.shを動かしても同じ結果になるか
+        command: >
+          zsh -c "cd /root/dotfiles;
+          ./start_setting.sh;
+          ./start_setting.sh;
+          if [ `md5sum /root/dotfiles/zshrc | awk '{print $$1}'` = `md5sum /root/.zshrc | awk '{print $$1}'` ] &&
+          [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ] && 
+          [ `md5sum /root/dotfiles/gitconfig | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
+          then echo Done; else exit 1; fi"
