@@ -29,5 +29,6 @@ RUN apt-get update && \
 # clone dotfiles
 RUN git clone -b add-dotfiles-vm https://github.com/Iovesophy/dotfiles.git /root/dotfiles
 
-RUN cd /root/dotfiles; npm init; npm install -g grunt-cli; npm install grunt --save-dev
+RUN cd /root/dotfiles; npm init; npm install -g grunt-cli; npm install grunt --save-dev; npm install grunt-zshlint --save-dev
+
 RUN pip3 install vim-vint
