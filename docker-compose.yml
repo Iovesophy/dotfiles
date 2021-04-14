@@ -12,14 +12,13 @@ services:
         command: >
             zsh -c "cd /root/dotfiles;
             ./start_setting.sh;
-            if [ `md5sum /root/dotfiles/zshrc | awk '{print $$1}'` = `md5sum /root/.zshrc | awk '{print $$1}'` ] &&
-            [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ];
-            then echo Done; else exit 1; fi;
+            sha1sum /root/dotfiles/zshrc /root/.zshrc;
+            sha1sum /root/dotfiles/vimrc /root/.vimrc;
+            vint /root/.vimrc;
+            grunt zshlint;
             ./start_setting.sh;
             ./start_setting.sh;
-            if [ `md5sum /root/dotfiles/zshrc | awk '{print $$1}'` = `md5sum /root/.zshrc | awk '{print $$1}'` ] &&
-            [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ];
-            then echo Done; else exit 1; fi;
-            ./start_setting.sh;
+            sha1sum /root/dotfiles/zshrc /root/.zshrc;
+            sha1sum /root/dotfiles/vimrc /root/.vimrc;
             vint /root/.vimrc;
             grunt zshlint;"
