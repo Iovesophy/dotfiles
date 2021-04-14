@@ -6,6 +6,7 @@ RUN apt-get update && apt-get -y install curl \
     apt-transport-https \
     ca-certificates \
     software-properties-common
+
 # docker-ce
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
@@ -20,7 +21,13 @@ RUN apt-get update && \
     vim \
     zsh \
     sudo \
-    docker-ce
+    docker-ce \
+    nodejs \
+    npm \
+    python3-pip
 
 # clone dotfiles
-RUN git clone https://github.com/Iovesophy/dotfiles.git /root/dotfiles
+RUN git clone -b add-dotfiles-vm https://github.com/Iovesophy/dotfiles.git /root/dotfiles
+
+RUN cd /root/dotfiles; npm init; npm install -g grunt-cli; npm install grunt --save-dev
+RUN pip3 install vim-vint

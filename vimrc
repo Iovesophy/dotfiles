@@ -31,3 +31,6 @@ nnoremap k gk
 syntax enable
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " env settings
+" lint tool
+let g:syntastic_vim_checkers = ['vint']
+" lint tool

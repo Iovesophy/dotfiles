@@ -40,8 +40,6 @@ if [ -z "${1:-}" ]; then
 else
     git config --global user.email $1
 fi
-cp ~/.gitconfig $(pwd)/.gitconfig_set
-ln -nfs $(pwd)/.gitconfig_set ~/.gitconfig
 
 printf "Done , Please check any setting files yourself .\n"
 printf "Start your happy Coding life . 🍀 \n"

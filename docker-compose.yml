@@ -25,3 +25,15 @@ services:
           [ `md5sum /root/dotfiles/vimrc | awk '{print $$1}'` = `md5sum /root/.vimrc | awk '{print $$1}'` ] && 
           [ `md5sum /root/dotfiles/.gitconfig_set | awk '{print $$1}'` = `md5sum /root/.gitconfig | awk '{print $$1}'` ];
           then echo Done; else exit 1; fi"
+
+        # grunt .zshrcの構文チェック
+        command: >
+            zsh -c "cd /root/dotfiles;
+            ./start_setting.sh;
+            grunt"
+
+        # vint .vimrcの構文チェック
+        command: >
+            zsh -c "cd /root/dotfiles;
+            ./start_setting.sh;
+            vint /root/.vimrc"
