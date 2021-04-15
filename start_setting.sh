@@ -33,7 +33,7 @@ printf "Add whoami username to user.name\n"
 printf "*********\n"
 whoami
 printf "*********\n"
-cp gitconfig_addon > ~/.gitconfig
+cp gitconfig_addon ~/.gitconfig
 git config --global user.name $(whoami)
 if [ -z "${1:-}" ]; then
     printf "No email setting.\n"
