@@ -14,4 +14,3 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias g="git"
 alias history="history 0"
-

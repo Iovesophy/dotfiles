@@ -4,21 +4,4 @@ services:
         build: dotfiles-vm
         container_name: "dotfiles-vm"
         tty: true
-        # start_setting.shが正常終了するか
-        # vint .vimrcの構文チェック
-        # grunt .zshrcの構文チェック
-        # 2回start_setting.shを動かしても同じ結果になるか
-        # シンボリックリンクを貼っている各種設定ファイルに破損がないかチェック
-        command: >
-            zsh -c "cd /root/dotfiles;
-            ./start_setting.sh;
-            sha1sum /root/dotfiles/zshrc /root/.zshrc;
-            sha1sum /root/dotfiles/vimrc /root/.vimrc;
-            vint /root/.vimrc;
-            grunt zshlint;
-            ./start_setting.sh;
-            ./start_setting.sh;
-            sha1sum /root/dotfiles/zshrc /root/.zshrc;
-            sha1sum /root/dotfiles/vimrc /root/.vimrc;
-            vint /root/.vimrc;
-            grunt zshlint;"
+        command: sh -c "cd /root/dotfiles; ./test.sh"

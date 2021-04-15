@@ -20,6 +20,7 @@ printf "Download git-prompt.sh\n"
 curl -fLo ~/.zsh/completion/git-prompt.sh --create-dirs https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
 printf "docker\n"
+curl -L https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker > ~/.zsh/completion/_docker
 curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
 
 printf "Make .vimrc on home\n"
@@ -32,8 +33,7 @@ printf "Add whoami username to user.name\n"
 printf "*********\n"
 whoami
 printf "*********\n"
-
-cat gitconfig_addon > ~/.gitconfig
+cp gitconfig_addon > ~/.gitconfig
 git config --global user.name $(whoami)
 if [ -z "${1:-}" ]; then
     printf "No email setting.\n"
