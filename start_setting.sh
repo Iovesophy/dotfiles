@@ -27,6 +27,7 @@ cd ~/.zsh/completion; curl -O https://raw.githubusercontent.com/docker/compose/$
 printf "Make .vimrc on home\n"
 ln -nfs $path/vimrc ~/.vimrc
 # vim plugin manager vim-plug
+mkdir -p ~/.vim/autoload
 cd ~/.vim/autoload; curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "Setting global user.name , user.email\n"
