@@ -47,7 +47,10 @@ syntax enable
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " env settings
 " kannokanno/previm
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup previm_loading
+    autocmd!
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup END
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 nnoremap <silent> <C-p> :PrevimOpen<CR>
 " tyru/open-browser.vim

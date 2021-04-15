@@ -1,7 +1,0 @@
-version: "3"
-services:
-    dotfiles-vm:
-        build: dotfiles-vm
-        container_name: "dotfiles-vm"
-        tty: true
-        command: sh -c "cd /root/dotfiles; ./test.sh"
