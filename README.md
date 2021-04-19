@@ -29,9 +29,8 @@ $ ./start_setting.sh
 + Open terminal.app .
 + Clone this repository .
 + Change directory on this repository .
-+ Change to dotfiles-vm directory and input this commands below .
++ Input this commands below .
 ```
-$ cd /dotfiles-vm
 $ docker build -t dotfiles .
 $ docker run -it dotfiles 
 ```

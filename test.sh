@@ -6,43 +6,30 @@ printf "************************************************\n"
 printf "Welcome to dotfile-test-script ver: 1.0\n"
 printf "************************************************\n"
 
-
 function StatusCheck()
 {
   printf "${1}\n"
-  if [ ${1} = 0 ]; then
-      :
-  else
+  if [ ${1} != 0 ]; then
       exit 1
   fi
-}
-
-function FileExec()
-{
-  exectimes=${1}
-  for i in `seq $exectimes`; do
-    ./start_setting.sh
-  done
 }
 
 function FileCheck()
 {
-  zshrc_o=`md5sum zshrc | awk '{print $1}'`
-  zshrc_b=`md5sum ~/.zshrc | awk '{print $1}'`
-  vimrc_o=`md5sum vimrc | awk '{print $1}'`
-  vimrc_b=`md5sum ~/.vimrc | awk '{print $1}'`
+  zshrc_origin='$(pwd)/zshrc'
+  zshrc_target='~/.zshrc'
+  vimrc_origin='$(pwd)/vimrc'
+  vimrc_target='~/.vimrc'
 
-  if [ $zshrc_o = $zshrc_b -a $vimrc_o = $vimrc_b ]; then
-      :
-  else
+  if [ `md5sum $zshrc_origin | awk '{print $1}'` != `md5sum $zshrc_target | awk '{print $1}'` -a `md5sum $vimrc_origin | awk '{print $1}'` != `md5sum $vimrc_target | awk '{print $1}'` ]; then
       exit 1
   fi
 }
 
-FileExec 1
+./start_setting.sh
 StatusCheck $?
 
-FileExec 1
+./start_setting.sh
 FileCheck
 StatusCheck $?
 
@@ -52,7 +39,8 @@ StatusCheck $?
 grunt zshlint
 StatusCheck $?
 
-FileExec 2
+./start_setting.sh
+./start_setting.sh
 FileCheck
 StatusCheck $?
 
