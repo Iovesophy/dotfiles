@@ -5,3 +5,5 @@ build:
 
 run:
 	docker run -it $(NAME)
+
+test: build run
