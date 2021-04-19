@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /app
+WORKDIR /dotfiles
 
 # Install basic command , clone dotfiles repository and install grunt linter package .
 RUN apt-get update \
@@ -7,12 +7,9 @@ RUN apt-get update \
         python3-pip \
         zsh \
       && pip3 install vim-vint \
-      && git clone https://github.com/Iovesophy/dotfiles.git \
-      && cd dotfiles \
+      && git clone https://github.com/Iovesophy/dotfiles.git . \
       && git checkout add-dotfiles-vm \
       && npm install -g grunt-cli \
       && npm install grunt grunt-zshlint
-
-WORKDIR /app/dotfiles
 
 CMD ["./test.sh"]

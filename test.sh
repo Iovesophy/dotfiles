@@ -16,22 +16,44 @@ function StatusCheck()
 
 function FileCheck()
 {
-  zshrc_origin=$(pwd)/zshrc
-  zshrc_target=~/.zshrc
-  vimrc_origin=$(pwd)/vimrc
-  vimrc_target=~/.vimrc
-
-  if [ `md5sum $zshrc_origin | awk '{print $1}'` != `md5sum $zshrc_target | awk '{print $1}'` -a `md5sum $vimrc_origin | awk '{print $1}'` != `md5sum $vimrc_target | awk '{print $1}'` ]; then
+  src=${1}
+  target=${2}
+  if [ `md5sum $src | awk '{print $1}'` != `md5sum $target | awk '{print $1}'` ]; then
       exit 1
   fi
 }
 
+function FileExistCheck()
+{
+  test -f ${1}
+}
+
+  zshrc_src=zshrc
+  zshrc_target=~/.zshrc
+  vimrc_src=vimrc
+  vimrc_target=~/.vimrc
+
+  _docker_src=~/.zsh/completion/_docker
+  _docker_compose_src=~/.zsh/completion/_docker-compose
+  git_prompt=~/.zsh/completion/git-prompt.sh
+
 ./start_setting.sh
 StatusCheck $?
 
 ./start_setting.sh
-FileCheck
+FileCheck $zshrc_src $zshrc_target
+FileCheck $vimrc_src $vimrc_target
 StatusCheck $?
+
+FileExistCheck $_docker_src 
+StatusCheck $?
+
+FileExistCheck $_docker_compose_src 
+StatusCheck $?
+
+FileExistCheck $git_prompt
+StatusCheck $?
+
 
 vint vimrc
 StatusCheck $?
@@ -41,7 +63,17 @@ StatusCheck $?
 
 ./start_setting.sh
 ./start_setting.sh
-FileCheck
+FileCheck $zshrc_src $zshrc_target
+FileCheck $vimrc_src $vimrc_target
+StatusCheck $?
+
+FileExistCheck $_docker_src 
+StatusCheck $?
+
+FileExistCheck $_docker_compose_src 
+StatusCheck $?
+
+FileExistCheck $git_prompt
 StatusCheck $?
 
 vint vimrc
