@@ -30,12 +30,21 @@ $ ./start_setting.sh
 + Clone this repository .
 + Change directory on this repository .
 + Input this commands below .
+
 ```
 $ docker build -t dotfiles .
 $ docker run -it dotfiles 
 ```
 + Auto start ./test.sh by Dockerfile's settings . If passed this test script , you get the set dotfiles environment .
 + Done .
+
+※Use makefile
+
+``` 
+$ make test
+$ make build
+$ make run
+```
 
 ## License
 Copyright (c) 2021 Kazuya yuda.
