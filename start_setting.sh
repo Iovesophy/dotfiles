@@ -13,9 +13,6 @@ printf "Welcome to dotfile-initset-script ver: 1.0\n"
 printf "Caution! , this script support only macOS's zsh .\n"
 printf "************************************************\n"
 
-if [ -z "${1:-""}" ]; then
-    printf "No email setting.\n"
-fi
 
 printf "Make .zshrc on home\n"
 ln -fs $(pwd)/zshrc ~/.zshrc
@@ -29,7 +26,11 @@ whoami
 printf "*********\n"
 cp $(pwd)/gitconfig_addon ~/.gitconfig
 git config --global user.name $(whoami)
-git config --global user.email $1
+if [ -z "${1:-""}" ]; then
+    printf "No email setting.\n"
+else
+    git config --global user.email $1
+fi
 
 printf "Download git-prompt.sh\n"
 mkdir -p ~/.zsh/completion
