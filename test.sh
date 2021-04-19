@@ -16,10 +16,10 @@ function StatusCheck()
 
 function FileCheck()
 {
-  zshrc_origin='$(pwd)/zshrc'
-  zshrc_target='~/.zshrc'
-  vimrc_origin='$(pwd)/vimrc'
-  vimrc_target='~/.vimrc'
+  zshrc_origin=$(pwd)/zshrc
+  zshrc_target=~/.zshrc
+  vimrc_origin=$(pwd)/vimrc
+  vimrc_target=~/.vimrc
 
   if [ `md5sum $zshrc_origin | awk '{print $1}'` != `md5sum $zshrc_target | awk '{print $1}'` -a `md5sum $vimrc_origin | awk '{print $1}'` != `md5sum $vimrc_target | awk '{print $1}'` ]; then
       exit 1
