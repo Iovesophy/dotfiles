@@ -1,24 +1,42 @@
 # dotfiles
-This is dotfiles-initset-script ver: 1.0
+This is dotfiles auto initialize setting scripts ver: 1.0
 
 - Attention notice
-If you alredy setting .zshrc , this script remove your setting .
+If the configured dotfiles already exists , this script removes the configuration.
 
 ## Dependency
-This scripts target shell is only zsh , so if you want to use script for bash , please regulation yourself .
-for example .zshrc → .bashrc
+This scripts target shell is only zsh , so if you want to use script for bash . Please regulation yourself .
+
+### for example 
++ .zshrc → .bashrc
++ zshlint → bashlint
 
 ## Usage
-+ Open laptop or computer.
-+ Open terminal.app
-+ Clone this repository.
-+ Chenge directory on this repository.
-+ Input this command.
+
+### Case1: LocalEnvironment
++ Open terminal.app .
++ Clone this repository .
++ Change directory on this repository .
++ Input this command .
 ```
-$ sh start_setting.sh
+$ ./start_setting.sh
 ```
-+ Setting.
-+ Done.
++ Setting .
++ Done .
+
+### Case2: VirtualEnvironment by Docker
++ Install Docker .
++ Open terminal.app .
++ Clone this repository .
++ Change directory on this repository .
++ Change to dotfiles-vm directory and input this commands below .
+```
+$ cd /dotfiles-vm
+$ docker build -t dotfiles .
+$ docker run -it dotfiles 
+```
++ Auto start ./test.sh by Dockerfile's settings . If passed this test script , you get the set dotfiles environment .
++ Done .
 
 ## License
 Copyright (c) 2021 Kazuya yuda.
@@ -29,4 +47,7 @@ https://opensource.org/licenses/mit-license.php
 kazuya yuda.
 
 ## References
-git-prompt.sh  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
++ git-prompt.sh  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh  
++ Docker-docks-ja コマンドライン補完 https://docs.docker.jp/compose/completion.html  
++ GRUNT Getting started https://gruntjs.com/getting-started  
++ grunt-zshlint https://www.npmjs.com/package/grunt-zshlint  

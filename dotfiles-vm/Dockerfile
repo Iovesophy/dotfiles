@@ -1,7 +1,9 @@
 FROM ubuntu
 ENV DEBIAN_FRONTEND=noninteractive
 
-# install basic command
+WORKDIR /app
+
+# Install basic command , clone dotfiles repository and install grunt linter package .
 RUN apt-get update \
       && apt-get -y install \
         curl \
@@ -12,16 +14,17 @@ RUN apt-get update \
         sudo \
         vim \
         zsh \
-      && pip3 install vim-vint
-
-WORKDIR /app
-
-# clone dotfiles
-RUN git clone https://github.com/Iovesophy/dotfiles.git \
+      && pip3 install \
+        vim-vint \
+      && git clone https://github.com/Iovesophy/dotfiles.git \
       && cd dotfiles \
-      && git checkout add-dotfiles-vm \
-      && npm install -g grunt-cli --save-dev \
-      && npm install grunt --save-dev \
-      && npm install grunt-zshlint --save-dev
+      && git checkout add-dotfiles-vm\
+      && npm install -g \
+        grunt-cli \
+      && npm install \
+        grunt \
+        grunt-zshlint
+
 WORKDIR /app/dotfiles
+
 CMD ["./test.sh"]
