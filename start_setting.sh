@@ -34,12 +34,12 @@ fi
 
 printf "Download git-prompt.sh\n"
 mkdir -p ~/.zsh/completion
-cd $_
+cd ~/.zsh/completion
 curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
 # vim plugin manager vim-plug
 mkdir -p ~/.vim/autoload
-cd $_
+cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "docker\n"
