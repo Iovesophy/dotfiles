@@ -17,9 +17,9 @@ function CheckStatus()
 function CheckFile()
 {
   printf "CheckFile:[${1}]==[${2}]\n"
-  src=$(shasum -a 256 ${1} | awk '{print $1}')
-  target=$(shasum -a 256 ${2} | awk '{print $1}')
-  test $src = $target
+  local src=$(shasum -a 256 $1 | awk '{print $1}')
+  local target=$(shasum -a 256 $2 | awk '{print $1}')
+  test ${src} = ${target}
 }
 
 function CheckFileExistence()
