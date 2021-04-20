@@ -20,7 +20,6 @@ function FileCheck()
   src=`shasum -a 256 ${1} | awk '{print $1}'`
   target=`shasum -a 256 ${2} | awk '{print $1}'`
   test $src = $target
-  StatusCheck $?
 }
 
 function FileExistenceCheck()
