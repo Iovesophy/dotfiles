@@ -41,6 +41,7 @@ set showmatch
 set laststatus=2
 set wildmode=list:longest
 set title
+set nofoldenable
 nnoremap j gj
 nnoremap k gk
 syntax enable
