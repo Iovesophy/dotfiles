@@ -13,11 +13,10 @@ printf "Welcome to dotfile-initset-script ver: 1.0\n"
 printf "Caution! , this script support only macOS's zsh .\n"
 printf "************************************************\n"
 
-
 printf "Make .zshrc on home\n"
-ln -fs zshrc ~/.zshrc
+ln -fs $(pwd)/zshrc ~/.zshrc
 printf "Make .vimrc on home\n"
-ln -fs vimrc ~/.vimrc
+ln -fs $(pwd)/vimrc ~/.vimrc
 
 printf "Setting global user.name , user.email\n"
 printf "Add whoami username to user.name\n"
