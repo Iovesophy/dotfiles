@@ -1,5 +1,4 @@
 #!/bin/bash
-# not support function on sh , so set bash.
 set -eu
 
 printf "************************************************\n"
