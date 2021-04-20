@@ -20,7 +20,7 @@ function FileCheck()
   src=${1}
   target=${2}
   if [ `md5sum $src | awk '{print $1}'` != `md5sum $target | awk '{print $1}'` ]; then
-      exit 1
+      StatusCheck $?
   fi
 }
 
