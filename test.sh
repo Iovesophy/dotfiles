@@ -8,7 +8,7 @@ printf "************************************************\n"
 
 function CheckStatus()
 {
-  printf "Status:$1\n"
+  printf "Status:${1}\n"
   if [ $1 != 0 ]; then
       exit 1
   fi
@@ -16,15 +16,15 @@ function CheckStatus()
 
 function CheckFile()
 {
-  printf "CheckFile:[$1]==[$2]\n"
-  src=$(shasum -a 256 $1 | awk '{print $1}')
-  target=$(shasum -a 256 $2 | awk '{print $1}')
+  printf "CheckFile:[${1}]==[${2}]\n"
+  src=$(shasum -a 256 ${1} | awk '{print $1}')
+  target=$(shasum -a 256 ${2} | awk '{print $1}')
   test $src = $target
 }
 
 function CheckFileExistence()
 {
-  printf "CheckFileExistence:$1\n"
+  printf "CheckFileExistence:${1}\n"
   test -f $1
 }
 

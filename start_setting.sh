@@ -37,7 +37,7 @@ cd ~/.zsh/completion
 curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
 printf "docker\n"
-curl -O https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker 
+curl -O https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 curl -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose 
 
 mkdir -p ~/.vim/autoload
