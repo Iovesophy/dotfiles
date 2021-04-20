@@ -4,7 +4,7 @@ module.exports = function (grunt) {
       options: {
         force: false
       },
-      src: ['{{filename}}', '/root/.zshrc', '/root/.zsh/completion/git-prompt.sh']
+      src: ['{{filename}}', '~/.zshrc', '~/.zsh/completion/git-prompt.sh']
     }
   });
   grunt.loadNpmTasks('grunt-zshlint');
