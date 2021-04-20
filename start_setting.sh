@@ -40,7 +40,6 @@ printf "docker\n"
 curl -O https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker 
 curl -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose 
 
-# vim plugin manager vim-plug
 mkdir -p ~/.vim/autoload
 cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

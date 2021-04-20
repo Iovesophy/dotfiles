@@ -17,11 +17,10 @@ function StatusCheck()
 function FileCheck()
 {
   printf "FileCheck:[${1}]==[${2}]\n"
-  src=${1}
-  target=${2}
-  if [ `md5sum $src | awk '{print $1}'` != `md5sum $target | awk '{print $1}'` ]; then
-      StatusCheck $?
-  fi
+  src=`shasum -a 256 ${1} | awk '{print $1}'`
+  target=`shasum -a 256 ${2} | awk '{print $1}'`
+  test $src = $target
+  StatusCheck $?
 }
 
 function FileExistenceCheck()
@@ -30,36 +29,35 @@ function FileExistenceCheck()
   test -f ${1}
 }
 
-zshrc_src=zshrc
-zshrc_target=~/.zshrc
-vimrc_src=vimrc
-vimrc_target=~/.vimrc
-
-_docker_src=~/.zsh/completion/_docker
-_docker_compose_src=~/.zsh/completion/_docker-compose
-git_prompt_src=~/.zsh/completion/git-prompt.sh
-gitconfig_target=~/.gitconfig
+readonly ZSHRC_SRC=zshrc
+readonly ZSHRC_TARGET=~/.zshrc
+readonly VIMRC_SRC=vimrc
+readonly VIMRC_TARGET=~/.vimrc
+readonly DOCKER_SRC=~/.zsh/completion/_docker
+readonly DOCKER_COMPOSE_SRC=~/.zsh/completion/_docker-compose
+readonly GIT_PROMPT_SRC=~/.zsh/completion/git-prompt.sh
+readonly GITCONFIG_TARGET=~/.gitconfig
 
 ./start_setting.sh
 StatusCheck $?
 
-FileCheck $zshrc_src $zshrc_target
+FileCheck $ZSHRC_SRC $ZSHRC_TARGET
 StatusCheck $?
-FileCheck $vimrc_src $vimrc_target
-StatusCheck $?
-
-FileExistenceCheck $zshrc_target
-StatusCheck $?
-FileExistenceCheck $vimrc_target
+FileCheck $VIMRC_SRC $VIMRC_TARGET
 StatusCheck $?
 
-FileExistenceCheck $_docker_src 
+FileExistenceCheck $ZSHRC_TARGET
 StatusCheck $?
-FileExistenceCheck $_docker_compose_src 
+FileExistenceCheck $VIMRC_TARGET
 StatusCheck $?
-FileExistenceCheck $git_prompt_src
+
+FileExistenceCheck $DOCKER_SRC 
 StatusCheck $?
-FileExistenceCheck $gitconfig_target
+FileExistenceCheck $DOCKER_COMPOSE_SRC 
+StatusCheck $?
+FileExistenceCheck $GIT_PROMPT_SRC
+StatusCheck $?
+FileExistenceCheck $GITCONFIG_TARGET
 StatusCheck $?
 
 printf "Check .vimrc\n"
@@ -74,23 +72,23 @@ StatusCheck $?
 ./start_setting.sh
 StatusCheck $?
 
-FileCheck $zshrc_src $zshrc_target
+FileCheck $ZSHRC_SRC $ZSHRC_TARGET
 StatusCheck $?
-FileCheck $vimrc_src $vimrc_target
-StatusCheck $?
-
-FileExistenceCheck $zshrc_target
-StatusCheck $?
-FileExistenceCheck $vimrc_target
+FileCheck $VIMRC_SRC $VIMRC_TARGET
 StatusCheck $?
 
-FileExistenceCheck $_docker_src 
+FileExistenceCheck $ZSHRC_TARGET
 StatusCheck $?
-FileExistenceCheck $_docker_compose_src 
+FileExistenceCheck $VIMRC_TARGET
 StatusCheck $?
-FileExistenceCheck $git_prompt_src
+
+FileExistenceCheck $DOCKER_SRC 
 StatusCheck $?
-FileExistenceCheck $gitconfig_target
+FileExistenceCheck $DOCKER_COMPOSE_SRC 
+StatusCheck $?
+FileExistenceCheck $GIT_PROMPT_SRC
+StatusCheck $?
+FileExistenceCheck $GITCONFIG_TARGET
 StatusCheck $?
 
 printf "Check .vimrc\n"

@@ -9,9 +9,8 @@ RUN apt-get update \
       && npm install -g grunt-cli \
       && npm install \
         grunt \
-        grunt-zshlint
-
-RUN git init \
+        grunt-zshlint \
+      && git init \
       && git remote add origin https://github.com/Iovesophy/dotfiles.git \
       && git pull origin add-dotfiles-vm
 
