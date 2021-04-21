@@ -1,4 +1,5 @@
 NAME := dotfiles
+VOLUME := $(shell pwd)
 
 .PHONY: test
 test: docker-build docker-run
@@ -9,4 +10,4 @@ docker-build:
 
 .PHONY: docker-run
 docker-run:
-	docker run --rm $(NAME)
+	docker run -v $(VOLUME):/$(NAME) --rm $(NAME)
