@@ -11,4 +11,6 @@ RUN apt-get update \
         grunt \
         grunt-zshlint
 
+COPY ["*.sh","*rc","Gruntfile.js","gitconfig_addon","./"]
+
 CMD ["./test.sh"]
