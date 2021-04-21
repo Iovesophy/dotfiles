@@ -9,27 +9,39 @@ readonly VIMRC_SRC=vimrc
 readonly VIMRC_TARGET=~/.vimrc
 readonly ZSHRC_SRC=zshrc
 readonly ZSHRC_TARGET=~/.zshrc
+readonly START_SETTING_SH=start_setting.sh
+readonly TEST_SH=test.sh
 
 function check_exit_status() {
-  printf "Status:${1}\n"
-  if [ $1 != 0 ]; then
-      exit 1
+  printf "Status:%s\n" "$1"
+  if [ "$1" != 0 ]; then
+    exit 1
   fi
 }
 
 function check_equal_file() {
-  printf "check_equal_file:[${1}]==[${2}]\n"
-  local src=$(shasum -a 256 $1 | awk '{print $1}')
-  local target=$(shasum -a 256 $2 | awk '{print $1}')
-  test ${src} = ${target}
+  printf "check_equal_file:[%s]==[%s]\n" "$1" "$2"
+  local src
+  local target
+  src=$(shasum -a 256 "$1" | awk '{print $1}')
+  target=$(shasum -a 256 "$2" | awk '{print $1}')
+  test "${src}" = "${target}"
 }
 
 function check_equal_fileExistence() {
-  printf "check_equal_fileExistence:${1}\n"
-  test -f $1
+  printf "check_equal_fileExistence:%s\n" "$1"
+  test -f "$1"
 }
 
 function do_test() {
+  printf "Check lint start_setting.sh\n"
+  shellcheck $START_SETTING_SH
+  check_exit_status $?
+
+  printf "Check lint test.sh\n"
+  shellcheck $TEST_SH
+  check_exit_status $?
+
   ./start_setting.sh
   check_exit_status $?
 
@@ -61,14 +73,14 @@ function do_test() {
 }
 
 function main() {
-    printf "************************************************\n"
-    printf "Welcome to dotfile-test-script ver: 1.0\n"
-    printf "************************************************\n"
+  printf "************************************************\n"
+  printf "Welcome to dotfile-test-script ver: 1.0\n"
+  printf "************************************************\n"
 
-    do_test
-    do_test
+  do_test
+  do_test
 
-    printf '\033[32m%s\033[m\n' 'Done. Test All Clear.'
+  printf '\033[32m%s\033[m\n' 'Done. Test All Clear.'
 }
 
 main
