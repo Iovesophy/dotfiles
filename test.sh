@@ -23,44 +23,33 @@ function check_equal_file_existence() {
 }
 
 function do_test() {
-  declare -r DOCKER_COMPOSE_SRC=~/.zsh/completion/_docker-compose
-  declare -r DOCKER_SRC=~/.zsh/completion/_docker
-  declare -r GITCONFIG_TARGET=~/.gitconfig
-  declare -r GIT_PROMPT_SRC=~/.zsh/completion/git-prompt.sh
-  declare -r VIMRC_SRC=vimrc
-  declare -r VIMRC_TARGET=~/.vimrc
-  declare -r ZSHRC_SRC=zshrc
-  declare -r ZSHRC_TARGET=~/.zshrc
-  declare -r START_SETTING_SH=start_setting.sh
-  declare -r TEST_SH=test.sh
-
   printf "Check lint start_setting.sh\n"
-  shellcheck $START_SETTING_SH
+  shellcheck start_setting.sh
   check_exit_status $?
 
   printf "Check lint test.sh\n"
-  shellcheck $TEST_SH
+  shellcheck test.sh
   check_exit_status $?
 
   ./start_setting.sh
   check_exit_status $?
 
-  check_equal_file $ZSHRC_SRC $ZSHRC_TARGET
+  check_equal_file zshrc ~/.zshrc
   check_exit_status $?
 
-  check_equal_file $VIMRC_SRC $VIMRC_TARGET
+  check_equal_file vimrc ~/.vimrc
   check_exit_status $?
 
-  check_equal_file_existence $DOCKER_SRC
+  check_equal_file_existence ~/.zsh/completion/_docker
   check_exit_status $?
 
-  check_equal_file_existence $DOCKER_COMPOSE_SRC
+  check_equal_file_existence ~/.zsh/completion/_docker-compose
   check_exit_status $?
 
-  check_equal_file_existence $GIT_PROMPT_SRC
+  check_equal_file_existence ~/.zsh/completion/git-prompt.sh
   check_exit_status $?
 
-  check_equal_file_existence $GITCONFIG_TARGET
+  check_equal_file_existence ~/.gitconfig
   check_exit_status $?
 
   printf "Check .vimrc\n"

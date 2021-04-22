@@ -33,11 +33,10 @@ fi
 
 printf "Download git-prompt.sh\n"
 mkdir -p ~/.zsh/completion
+cd ~/.zsh/completion
 curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-ln -fs "$(pwd)"/git-prompt.sh ~/.zsh/completion/git-prompt.sh
 
 printf "docker\n"
-cd ~/.zsh/completion
 curl -O https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 curl -O https://raw.githubusercontent.com/docker/compose/"$(docker-compose version --short)"/contrib/completion/zsh/_docker-compose
 
