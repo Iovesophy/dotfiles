@@ -1,17 +1,6 @@
 #!/bin/bash
 set -eu
 
-readonly DOCKER_COMPOSE_SRC=~/.zsh/completion/_docker-compose
-readonly DOCKER_SRC=~/.zsh/completion/_docker
-readonly GITCONFIG_TARGET=~/.gitconfig
-readonly GIT_PROMPT_SRC=~/.zsh/completion/git-prompt.sh
-readonly VIMRC_SRC=vimrc
-readonly VIMRC_TARGET=~/.vimrc
-readonly ZSHRC_SRC=zshrc
-readonly ZSHRC_TARGET=~/.zshrc
-readonly START_SETTING_SH=start_setting.sh
-readonly TEST_SH=test.sh
-
 function check_exit_status() {
   printf "Status:%s\n" "$1"
   if [ "$1" != 0 ]; then
@@ -20,7 +9,7 @@ function check_exit_status() {
 }
 
 function check_equal_file() {
-  printf "check_equal_file:[%s]==[%s]\n" "$1" "$2"
+  printf "Check_equal_file:[%s]==[%s]\n" "$1" "$2"
   local src
   local target
   src=$(shasum -a 256 "$1" | awk '{print $1}')
@@ -28,12 +17,23 @@ function check_equal_file() {
   test "${src}" = "${target}"
 }
 
-function check_equal_fileExistence() {
-  printf "check_equal_fileExistence:%s\n" "$1"
+function check_equal_file_existence() {
+  printf "Check_equal_file_existence:%s\n" "$1"
   test -f "$1"
 }
 
 function do_test() {
+  declare -r DOCKER_COMPOSE_SRC=~/.zsh/completion/_docker-compose
+  declare -r DOCKER_SRC=~/.zsh/completion/_docker
+  declare -r GITCONFIG_TARGET=~/.gitconfig
+  declare -r GIT_PROMPT_SRC=~/.zsh/completion/git-prompt.sh
+  declare -r VIMRC_SRC=vimrc
+  declare -r VIMRC_TARGET=~/.vimrc
+  declare -r ZSHRC_SRC=zshrc
+  declare -r ZSHRC_TARGET=~/.zshrc
+  declare -r START_SETTING_SH=start_setting.sh
+  declare -r TEST_SH=test.sh
+
   printf "Check lint start_setting.sh\n"
   shellcheck $START_SETTING_SH
   check_exit_status $?
@@ -51,16 +51,16 @@ function do_test() {
   check_equal_file $VIMRC_SRC $VIMRC_TARGET
   check_exit_status $?
 
-  check_equal_fileExistence $DOCKER_SRC
+  check_equal_file_existence $DOCKER_SRC
   check_exit_status $?
 
-  check_equal_fileExistence $DOCKER_COMPOSE_SRC
+  check_equal_file_existence $DOCKER_COMPOSE_SRC
   check_exit_status $?
 
-  check_equal_fileExistence $GIT_PROMPT_SRC
+  check_equal_file_existence $GIT_PROMPT_SRC
   check_exit_status $?
 
-  check_equal_fileExistence $GITCONFIG_TARGET
+  check_equal_file_existence $GITCONFIG_TARGET
   check_exit_status $?
 
   printf "Check .vimrc\n"
