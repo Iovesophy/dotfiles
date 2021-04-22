@@ -42,6 +42,9 @@ set laststatus=2
 set wildmode=list:longest
 set title
 set nofoldenable
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
+set fileformats=unix,dos,mac
 nnoremap j gj
 nnoremap k gk
 syntax enable
