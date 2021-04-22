@@ -39,10 +39,6 @@ ln -fs "$(pwd)"/git-prompt.sh ~/.zsh/completion/git-prompt.sh
 printf "docker\n"
 cd ~/.zsh/completion
 curl -O https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-# install docker-compose
-curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-"$(uname -s)"-"$(uname -m)" -o /usr/local/bin/docker-compose
-chmod 755 /usr/local/bin/docker-compose
-# install docker-compose-completion
 curl -O https://raw.githubusercontent.com/docker/compose/"$(docker-compose version --short)"/contrib/completion/zsh/_docker-compose
 
 mkdir -p ~/.vim/autoload
