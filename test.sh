@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -eu
 
 function check_exit_status() {
@@ -17,8 +18,8 @@ function check_equal_file() {
   test "${src}" = "${target}"
 }
 
-function check_equal_file_existence() {
-  printf "Check_equal_file_existence:%s\n" "$1"
+function check_file_existence() {
+  printf "Check_file_existence:%s\n" "$1"
   test -f "$1"
 }
 
@@ -40,16 +41,16 @@ function do_test() {
   check_equal_file vimrc ~/.vimrc
   check_exit_status $?
 
-  check_equal_file_existence ~/.zsh/completion/_docker
+  check_file_existence ~/.zsh/completion/_docker
   check_exit_status $?
 
-  check_equal_file_existence ~/.zsh/completion/_docker-compose
+  check_file_existence ~/.zsh/completion/_docker-compose
   check_exit_status $?
 
-  check_equal_file_existence ~/.zsh/completion/git-prompt.sh
+  check_file_existence ~/.zsh/completion/git-prompt.sh
   check_exit_status $?
 
-  check_equal_file_existence ~/.gitconfig
+  check_file_existence ~/.gitconfig
   check_exit_status $?
 
   printf "Check .vimrc\n"
