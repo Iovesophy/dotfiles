@@ -1,5 +1,4 @@
-#!/bin/sh
-set -eux
+#!/bin/sh -eux
 
 : << COMMENT_OUT
 This scripts target shell is only zsh , so if you want to use script for bash , please regulation yourself .

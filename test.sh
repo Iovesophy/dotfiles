@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -eu
+#!/bin/bash -eu
 
 function check_exit_status() {
   printf "Status:%s\n" "$1"
