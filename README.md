@@ -1,5 +1,9 @@
 # dotfiles
+
+[![CI to Docker Hub](https://github.com/Iovesophy/dotfiles/actions/workflows/docker.yml/badge.svg)](https://github.com/Iovesophy/dotfiles/actions/workflows/docker.yml)
+
 This is dotfiles auto initialize setting scripts ver: 1.0
+
 
 - Attention notice
 If the configured dotfiles already exists , this script removes the configuration.
