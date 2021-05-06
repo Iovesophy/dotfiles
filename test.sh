@@ -23,11 +23,11 @@ function check_file_existence() {
 
 function do_test() {
   printf "Check lint start_setting.sh\n"
-  shellcheck start_setting.sh
+  shellcheck -e SC1117 start_setting.sh
   check_exit_status $?
 
   printf "Check lint test.sh\n"
-  shellcheck test.sh
+  shellcheck -e SC1117 test.sh
   check_exit_status $?
 
   ./start_setting.sh

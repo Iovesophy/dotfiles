@@ -41,10 +41,12 @@ $ make test
 + Auto start ./test.sh by Dockerfile's settings . If passed this test script , you get the set dotfiles environment .
 + Done .
 
-※ Another option
-```
-$ make docker-build
-$ make docker-run
+※Use makefile
+
+``` 
+$ make test
+$ make build
+$ make run
 ```
 
 ## License
