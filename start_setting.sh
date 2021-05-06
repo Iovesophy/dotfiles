@@ -7,6 +7,7 @@ for example .zshrc -> .bashrc
 - Attention notice
 If you already setting .zshrc , this script remove your setting .
 COMMENT_OUT
+
 printf "************************************************\n"
 printf "Welcome to dotfile-initset-script ver: 1.0\n"
 printf "Caution! , this script support only macOS's zsh .\n"
