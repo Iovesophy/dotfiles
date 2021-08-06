@@ -61,3 +61,9 @@ nnoremap <silent> <C-p> :PrevimOpen<CR>
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+" for cloudformation yaml tab space
+set expandtab smarttab
+augroup yaml-tab
+    autocmd!
+    autocmd BufRead,BufNewFile *.yml,*.yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+augroup end
