@@ -45,11 +45,13 @@ cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "aws-cli\n"
-if [ "$(cat ~/.aws-cli-status)" != "skip" ]; then
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
+set +e
+STATUS="$(aws --version 2>&1 > /dev/null | awk '{print $4 $5 $6}')"
+set -e
+if [ "$STATUS" = "aws:notfound" ]; then
+    curl -O "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+    unzip awscli-exe-linux-x86_64.zip
     ./aws/install
-    printf "skip" > ~/.aws-cli-status
 fi
 
 printf "Done , Please check any setting files yourself .\n"
