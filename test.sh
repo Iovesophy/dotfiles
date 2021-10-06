@@ -30,7 +30,7 @@ function do_test() {
   shellcheck -e SC1117 test.sh
   check_exit_status $?
 
-  ./start_setting.sh
+  ./start_setting.sh docker_test
   check_exit_status $?
 
   check_equal_file zshrc ~/.zshrc
