@@ -60,10 +60,16 @@ function do_test() {
   check_exit_status $?
 }
 
+function create_status() {
+  touch ~/.aws-cli-status
+}
+
 function main() {
   printf "************************************************\n"
   printf "Welcome to dotfile-test-script ver: 1.0\n"
   printf "************************************************\n"
+
+  create_status
 
   do_test
   do_test
