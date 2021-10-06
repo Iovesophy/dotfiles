@@ -7,6 +7,7 @@ RUN apt-get update \
         python3-pip \
         shellcheck \
         zsh \
+        exa \
       && pip3 uninstall PyYAML \
       && pip3 install --upgrade pip \
       && pip3 install vim-vint \
