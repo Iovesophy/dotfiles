@@ -25,10 +25,10 @@ whoami
 printf "*********\n"
 cp gitconfig_addon ~/.gitconfig
 git config --global user.name "$(whoami)"
-if [ -z "${2:-""}" ]; then
+if [ -z "${1:-""}" ]; then
   printf "No email setting.\n"
 else
-  git config --global user.email "$2"
+  git config --global user.email "$1"
 fi
 
 printf "Download git-prompt.sh\n"
@@ -45,16 +45,17 @@ cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "aws-cli\n"
-set +e
-STATUS="$(aws --version 2>&1 > /dev/null | awk '{print $4 $5 $6}')"
-set -e
-
-if [ "$1" = "docker_test" ] && [ "$STATUS" = "aws:notfound" ]; then
-    curl -O "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
-    unzip awscli-exe-linux-x86_64.zip
-    ./aws/install
-elif [ "$1" = "mac" ]; then
+if [ "$(uname)" = 'Darwin' ]; then
     brew install awscli
+elif [ "$(uname -s)" = 'Linux' ]; then
+    set +e
+    STATUS="$(aws --version 2>&1 > /dev/null | awk '{print $4 $5 $6}')"
+    set -e
+    if [ "$STATUS" = "aws:notfound" ]; then
+        curl -O "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+        unzip awscli-exe-linux-x86_64.zip
+        ./aws/install
+    fi
 fi
 
 printf "Done , Please check any setting files yourself .\n"
