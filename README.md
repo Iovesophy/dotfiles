@@ -22,7 +22,6 @@ This scripts target shell is only zsh , so if you want to use script for bash . 
 + Clone this repository .
 + Change directory on this repository .
 + Input this command .
-
 ```
 $ ./start_setting.sh <your email>
 ```
@@ -41,6 +40,8 @@ $ make test
 ```
 + Auto start ./test.sh by Dockerfile's settings . If passed this test script , you get the set dotfiles environment .
 + Done .
+
+※Use makefile
 
 ``` 
 $ make test
