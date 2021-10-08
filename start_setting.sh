@@ -45,20 +45,18 @@ cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "aws-cli\n"
-set +e
-aws --version
-STATUS=$?
-set -e
-if [ "$STATUS" != 0 ]; then
+cd ~/.zsh/completion
+curl -O https://raw.githubusercontent.com/aws/aws-cli/develop/bin/aws_zsh_completer.sh
+
+if ! (type aws > /dev/null 2>&1); then
     if [ "$(uname)" = 'Darwin' ]; then
         brew install awscli
     else
-        curl -O 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip'
+        curl -O https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
         unzip awscli-exe-linux-x86_64.zip
         ./aws/install
     fi
 fi
-
 
 printf "Done , Please check any setting files yourself .\n"
 printf "Start your happy Coding life .\n"
