@@ -45,18 +45,20 @@ cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "aws-cli\n"
-if [ "$(uname)" = 'Darwin' ]; then
-    brew install awscli
-elif [ "$(uname -s)" = 'Linux' ]; then
-    set +e
-    STATUS="$(aws --version 2>&1 > /dev/null | awk '{print $4 $5 $6}')"
-    set -e
-    if [ "$STATUS" = "aws:notfound" ]; then
-        curl -O "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+set +e
+aws --version
+STATUS=$?
+set -e
+if [ "$STATUS" != 0 ]; then
+    if [ "$(uname)" = 'Darwin' ]; then
+        brew install awscli
+    else
+        curl -O 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip'
         unzip awscli-exe-linux-x86_64.zip
         ./aws/install
     fi
 fi
+
 
 printf "Done , Please check any setting files yourself .\n"
 printf "Start your happy Coding life .\n"
