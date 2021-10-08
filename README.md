@@ -22,8 +22,9 @@ This scripts target shell is only zsh , so if you want to use script for bash . 
 + Clone this repository .
 + Change directory on this repository .
 + Input this command .
+
 ```
-$ make GIT_EMAIL=<your email>
+$ ./start_setting.sh <your email>
 ```
 + Setting .
 + Done .

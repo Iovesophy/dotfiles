@@ -1,8 +1,4 @@
 NAME := dotfiles
-GIT_EMAIL :=
-
-local: 
-	./start_setting.sh $(GIT_EMAIL)
 
 .PHONY: test
 test: docker-build docker-run
