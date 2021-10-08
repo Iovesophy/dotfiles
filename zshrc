@@ -6,7 +6,7 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
-source ~/.zsh/completion/aws_zsh_completer.sh
+source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 
 alias ls='ls -GF'
 export CLICOLOR=1
