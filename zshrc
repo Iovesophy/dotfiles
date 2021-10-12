@@ -5,13 +5,12 @@ PS1='[%n@🍢 %c$(__git_ps1 " (%s)")]\$ '
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
     autoload -Uz compinit
-    compinit
+    rm -f ~/.zcompdump; compinit
 else
     fpath=(~/.zsh/completion $fpath)
     autoload -Uz compinit && compinit -i
     source ~/.zsh/completion/aws_zsh_completer.sh
 fi
-rm -f ~/.zcompdump; compinit
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
