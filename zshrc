@@ -7,11 +7,10 @@ if type brew &>/dev/null; then
     autoload -Uz compinit
     rm -f ~/.zcompdump; compinit
 else
-    fpath=(~/.zsh/completion $fpath)
-    autoload -Uz compinit && compinit -i
     source ~/.zsh/completion/aws_zsh_completer.sh
 fi
-
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
 
