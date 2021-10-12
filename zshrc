@@ -6,6 +6,7 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
     autoload -Uz compinit
     rm -f ~/.zcompdump; compinit
+    chmod -R go-w "$(brew --prefix)/share"
 else
     source ~/.zsh/completion/aws_zsh_completer.sh
 fi
