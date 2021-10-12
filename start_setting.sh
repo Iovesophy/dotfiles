@@ -57,5 +57,12 @@ mkdir -p ~/.vim/autoload
 cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+printf "brew\n"
+if [ "$(uname)" = 'Darwin' ]; then
+    if (type brew > /dev/null 2>&1) ; then
+        chmod -R go-w "$(brew --prefix)/share"
+    fi
+fi 
+
 printf "Done , Please check any setting files yourself .\n"
 printf "Start your happy Coding life .\n"
