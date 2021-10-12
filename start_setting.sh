@@ -45,12 +45,11 @@ if ! (type aws > /dev/null 2>&1); then
     if [ "$(uname)" = 'Darwin' ]; then
         brew install awscli
     else
+        curl -O https://raw.githubusercontent.com/aws/aws-cli/develop/bin/aws_zsh_completer.sh
         cd /tmp
         curl -O https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
         unzip awscli-exe-linux-x86_64.zip
         ./aws/install
-        cd /usr/local/share/zsh/site-functions
-        curl -O https://raw.githubusercontent.com/aws/aws-cli/develop/bin/aws_zsh_completer.sh
     fi
 fi
 
