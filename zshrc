@@ -2,11 +2,19 @@ source ~/.zsh/completion/git-prompt.sh
 setopt PROMPT_SUBST
 PS1='[%n@🍢 %c$(__git_ps1 " (%s)")]\$ '
 
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    autoload -Uz compinit
+    compinit
+else
+    fpath=(~/.zsh/completion $fpath)
+    autoload -Uz compinit && compinit -i
+    source ~/.zsh/completion/aws_zsh_completer.sh
+fi
+rm -f ~/.zcompdump; compinit
+
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
-source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 
 alias ls='ls -GF'
 export CLICOLOR=1
