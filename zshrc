@@ -8,9 +8,9 @@ else
     source ~/.zsh/completion/aws_zsh_completer.sh
 fi
 
-fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit
 rm -f ~/.zcompdump
-autoload -Uz compnit
+compinit
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
@@ -23,3 +23,4 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias g="git"
 alias history="history 0"
+
