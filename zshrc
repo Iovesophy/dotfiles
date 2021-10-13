@@ -9,9 +9,8 @@ else
 fi
 
 fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit
 rm -f ~/.zcompdump
-compinit
+autoload -Uz compnit
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
