@@ -2,8 +2,16 @@ source ~/.zsh/completion/git-prompt.sh
 setopt PROMPT_SUBST
 PS1='[%n@🍢 %c$(__git_ps1 " (%s)")]\$ '
 
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+else
+    source ~/.zsh/completion/aws_zsh_completer.sh
+fi
+
+autoload -Uz compinit
+rm -f ~/.zcompdump
+compinit
+
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:default' menu select=1
 
