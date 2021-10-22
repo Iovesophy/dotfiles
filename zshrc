@@ -2,6 +2,8 @@ source ~/.zsh/completion/git-prompt.sh
 setopt PROMPT_SUBST
 PS1='[%n@🍢 %c$(__git_ps1 " (%s)")]\$ '
 
+bindkey -v
+
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 else
