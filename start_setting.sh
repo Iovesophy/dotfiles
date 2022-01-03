@@ -53,6 +53,13 @@ if ! (type aws > /dev/null 2>&1); then
     fi
 fi
 
+printf "peco\n"
+if ! (type peco > /dev/null 2>&1); then
+    if [ "$(uname)" = 'Darwin' ]; then
+        brew install peco
+    fi
+fi
+
 mkdir -p ~/.vim/autoload
 cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
