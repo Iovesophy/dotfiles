@@ -19,9 +19,15 @@ alias ls='ls -GF'
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias g="git"
+setopt auto_cd
+alias dl="~/Downloads"
+alias dt="~/Desktop"
+
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
 alias history="history 0"
 
 function peco-select-history() {
