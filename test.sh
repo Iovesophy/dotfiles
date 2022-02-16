@@ -60,6 +60,38 @@ function do_test() {
   check_exit_status $?
 }
 
+
+function init() {
+  printf "brew\n"
+  if ! (type brew > /dev/null 2>&1) ; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    chmod -R go-w "$(brew --prefix)/share"
+  fi
+
+  if ! (type shellcheck > /dev/null 2>&1) ; then
+    brew install shellcheck
+  fi
+
+  if ! (type node > /dev/null 2>&1) ; then
+    brew install node
+  fi
+
+  printf "pip\n"
+  if ! (type python3 > /dev/null 2>&1) ; then
+    brew install python3
+  fi
+
+  if ! (type vint > /dev/null 2>&1) ; then
+    pip3 install vim-vint
+  fi
+
+  printf "npm\n"
+  if ! (type grunt > /dev/null 2>&1) ; then
+    npm install -g grunt-cli
+  fi
+  npm install grunt grunt-zshlint-darwin
+}
+
 function main() {
   printf "************************************************\n"
   printf "Welcome to dotfile-test-script ver: 1.0\n"
@@ -71,4 +103,5 @@ function main() {
   printf '\033[32m%s\033[m\n' 'Done. Test All Clear.'
 }
 
+init
 main

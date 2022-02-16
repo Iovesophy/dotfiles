@@ -7,7 +7,7 @@ module.exports = function (grunt) {
       src: ['{{filename}}', 'zshrc']
     }
   });
-  grunt.loadNpmTasks('grunt-zshlint');
+  grunt.loadNpmTasks('grunt-zshlint-darwin');
   grunt.registerTask('default', ['zshlint']);
   grunt.registerTask('file', 'filename', function (fileName) {
     var config = grunt.config();
