@@ -13,6 +13,7 @@ zstyle ':completion:*:default' menu select=1
 alias ls='ls -GF'
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
+export NODE_PATH="$(npm root -g)"
 
 setopt auto_cd
 alias dl="~/Downloads"
