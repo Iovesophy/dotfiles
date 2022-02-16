@@ -2,12 +2,7 @@ source ~/.zsh/completion/git-prompt.sh
 setopt PROMPT_SUBST
 PS1='%F{green}[%n %F{cyan}%c%F{red}$(__git_ps1 " %s")%F{green}]》%f'
 
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-else
-    source ~/.zsh/completion/aws_zsh_completer.sh
-fi
-
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 autoload -Uz compinit
 rm -f ~/.zcompdump
 compinit
