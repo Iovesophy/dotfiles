@@ -2,7 +2,7 @@ source ~/.zsh/completion/git-prompt.sh
 setopt PROMPT_SUBST
 PS1='%F{green}[%n %F{cyan}%c%F{red}$(__git_ps1 " %s")%F{green}]》%f'
 
-FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+FPATH=~/.zsh/completion:$FPATH
 autoload -Uz compinit
 rm -f ~/.zcompdump
 compinit
