@@ -11,5 +11,7 @@ jobs:
         steps:
             - name: Check Out Repo
               uses: actions/checkout@v2
+            - name: Install
+              run: ./install_package.sh
             - name: Run
-              run: ./test.sh
+              run: ./start_setting.sh

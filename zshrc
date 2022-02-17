@@ -2,7 +2,6 @@ source ~/.zsh/completion/git-prompt.sh
 setopt PROMPT_SUBST
 PS1='%F{green}[%n %F{cyan}%c%F{red}$(__git_ps1 " %s")%F{green}]》%f'
 
-FPATH=~/.zsh/completion:$FPATH
 autoload -Uz compinit
 rm -f ~/.zcompdump
 compinit
@@ -13,7 +12,6 @@ zstyle ':completion:*:default' menu select=1
 alias ls='ls -GF'
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
-export NODE_PATH="$(npm root -g)"
 
 setopt auto_cd
 alias dl="~/Downloads"
@@ -26,11 +24,10 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 alias history="history 0"
 
-# add widget
 zle -N peco-select-history
 function peco-select-history() {
-    BUFFER=$(\history -n 1 | eval "tail -r" | peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
+  BUFFER=$(\history -n 1 | eval "tail -r" | peco --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle clear-screen
 }
 bindkey '^r' peco-select-history
