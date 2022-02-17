@@ -1,6 +1,6 @@
-source ~/.zsh/completion/git-prompt.sh
+source /usr/local/opt/zsh-git-prompt/zshrc.sh
 setopt PROMPT_SUBST
-PS1='%F{green}[%n %F{cyan}%c%F{red}$(__git_ps1 " %s")%F{green}]》%f'
+PS1='%F{green}[%n %F{cyan}%c%F{white}$(git_super_status)%F{green}]》%f'
 
 autoload -Uz compinit
 rm -f ~/.zcompdump
