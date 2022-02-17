@@ -9,9 +9,9 @@ jobs:
     build:
         runs-on: macos-latest
         steps:
-            - name: Check Out Repo
+            - name: Checkout Repo
               uses: actions/checkout@v2
-            - name: Install
-              run: ./install_package.sh
+            - name: Clean
+              run: rm -rf '/usr/local/bin/aws' '/usr/local/bin/aws_completer' '/usr/local/bin/go' '/usr/local/bin/gofmt'
             - name: Run
-              run: ./start_setting.sh
+              run: make
