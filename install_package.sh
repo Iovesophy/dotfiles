@@ -1,19 +1,17 @@
 #!/bin/sh -eux
 
-if ! (type brew > /dev/null 2>&1); then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  chmod -R go-w "$(brew --prefix)/share"
-fi
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+chmod -R go-w "$(brew --prefix)/share"
 
 brew install \
-  python3 \
-  node \
-  shellcheck \
-  docker \
-  peco \
   awscli \
+  docker \
   docker-compose-completion \
   go \
+  node \
+  peco \
+  python3 \
+  shellcheck \
   zsh-git-prompt
 
 pip3 install \
