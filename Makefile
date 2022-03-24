@@ -14,6 +14,5 @@ test: install
 
 .PHONY: install
 install:
-	pip install ansible
-	ansible-playbook -i inventory/localhost.ini install_playbook.yml
+	pip install ansible && ansible-playbook -i inventory/localhost.ini install_playbook.yml
 
