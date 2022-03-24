@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  tasks:
+  - name: execute shell
+    shell: echo hello world
+    register: return_from_shell
+    changed_when: no
+  - name: show previous shell stdout
+    debug:
+      msg: "{{ return_from_shell.stdout }}"
