@@ -14,9 +14,6 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 setopt auto_cd
-alias dl="~/Downloads"
-alias dt="~/Desktop"
-
 setopt share_history
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
@@ -31,3 +28,4 @@ function peco-select-history() {
   zle clear-screen
 }
 bindkey '^r' peco-select-history
+
