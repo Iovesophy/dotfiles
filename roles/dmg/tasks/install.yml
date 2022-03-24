@@ -1,12 +1,11 @@
-- block:
-  - name: install
-    shell: | 
-      curl -O {{ dmg.url }}
-      hdiutil attach ./{{ dmg.name }}.dmg -nobrowse -mountpoint ./{{ dmg.name }}
-      cp -aR ./{{ dmg.name }}/*.app /Applications/{{ dmg.name }}.app
-      hdiutil detach ./{{ dmg.name }}/
-      rm -R ./{{ dmg.name }}.dmg
-    with_items: dmg
-    when: 
-      - docker_exists.stat.exists == False
+- name: install
+  shell: | 
+    curl -O "{{ item.url }}"
+    hdiutil attach ./{{ item.name }}.dmg -nobrowse -mountpoint ./{{ item.name }}
+    cp -aR ./{{ item.name }}/*.app /Applications/{{ item.name }}.app
+    hdiutil detach ./{{ item.name }}/
+    rm -R ./{{ item.name }}.dmg
+  with_items: "{{ dmg }}"
+  when: 
+    - docker.stat.exists == False
 
