@@ -12,6 +12,6 @@ jobs:
             - name: Checkout Repo
               uses: actions/checkout@v2
             - name: Clean
-              run: rm -rf '/usr/local/bin/aws' '/usr/local/bin/aws_completer' '/usr/local/bin/go' '/usr/local/bin/gofmt'
+              run: rm -rf '/usr/local/bin/ansible'
             - name: Run
               run: make

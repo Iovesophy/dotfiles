@@ -1,5 +1,7 @@
 EMAIL:=dotfiles@example.com
 
+all: setting ansible
+
 .PHONY: setting
 setting: test
 	./start_setting.sh $(EMAIL)
@@ -14,3 +16,7 @@ test: install
 .PHONY: install
 install:
 	./install_package.sh
+
+.PHONY: ansible
+ansible:
+	ansible-playbook -i mac/inventory/localhost.ini mac/setup_playbook.yml
