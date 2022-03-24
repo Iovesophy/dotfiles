@@ -1,16 +1,19 @@
 EMAIL:=dotfiles@example.com
 
-.PHONY: setting
-setting: test
-	./start_setting.sh $(EMAIL)
+all: setup
+
+.PHONY: setup
+setup: test
+	ansible-playbook -i inventory/localhost.ini setup_playbook.yml -e "email=$(EMAIL)"
 
 .PHONY: test
 test: install
-	shellcheck start_setting.sh
-	shellcheck install_package.sh
+	shellcheck install_ansible.sh
 	zsh -n zshrc
 	vint vimrc
 
 .PHONY: install
 install:
-	./install_package.sh
+	./install_ansible.sh
+	ansible-playbook -i inventory/localhost.ini install_playbook.yml
+

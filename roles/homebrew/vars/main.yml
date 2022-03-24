@@ -1,0 +1,9 @@
+---
+hmbpkg:
+  - { name: awscli, state: present }
+  - { name: node, state: present }
+  - { name: peco, state: present }
+  - { name: shellcheck, state: present }
+  - { name: vint, state: present }
+  - { name: zsh-git-prompt, state: present }
+
