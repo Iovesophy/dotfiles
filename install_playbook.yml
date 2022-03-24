@@ -5,14 +5,5 @@
   gather_facts: no
   roles:
     - homebrew
-  tasks:
-    - name: docker
-      shell: |
-        if ! (type docker > /dev/null 2>&1) ; then
-          curl -O https://desktop.docker.com/mac/main/amd64/Docker.dmg
-          hdiutil attach Docker.dmg
-          cp -r /Volumes/Docker/Docker.app /Volumes/Docker/Applications
-          hdiutil unmount /Volumes/Docker
-          rm -rf Docker.dmg
-        fi
+    - dmg
 
