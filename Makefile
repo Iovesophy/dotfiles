@@ -13,6 +13,10 @@ test: install
 	vint vimrc
 
 .PHONY: install
-install:
-	pip install ansible && ansible-playbook -i inventory/localhost.ini install_playbook.yml
+install: ansible
+	ansible-playbook -i inventory/localhost.ini install_playbook.yml
+
+.PHONY: ansible
+ansible:
+	pip install ansible
 
