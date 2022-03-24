@@ -18,6 +18,5 @@ install: ansible
 
 .PHONY: ansible
 ansible:
-	pip install ansible
-	ansible --version
+	./install_ansible.sh
 

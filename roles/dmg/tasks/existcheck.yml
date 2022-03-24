@@ -1,4 +1,4 @@
-  - name: docker
-    local_action: stat path=/Applications/Docker.app
-    register: docker_exists
+- name: docker
+  local_action: stat path=/Applications/Docker.app
+  register: docker
   
