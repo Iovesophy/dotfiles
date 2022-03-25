@@ -1,4 +1,7 @@
 ---
-- include_tasks: existcheck.yml
-- include_tasks: install.yml
+- block:
+  - include_tasks: check.yml
+  - include_tasks: install.yml
+  tags:
+    - dmg
 
