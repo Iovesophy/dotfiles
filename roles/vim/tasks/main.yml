@@ -1,0 +1,6 @@
+---
+- block:
+  - include_tasks: vim-plug.yml
+  tags:
+    - vim
+
