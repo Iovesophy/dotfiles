@@ -1,6 +1,6 @@
 EMAIL:=dotfiles@example.com
 
-all: setup
+all: ansible setup
 
 .PHONY: setup
 setup: test
@@ -8,15 +8,17 @@ setup: test
 
 .PHONY: test
 test: install
+	shellcheck ./tools/install_ansible.sh
 	shellcheck ./setup.sh
 	zsh -n zshrc
 	vint vimrc
 
 .PHONY: install
-install: ansible
-	ansible-playbook -i inventory/localhost.ini install_playbook.yml
+install:
+	for i in --syntax-check --list-tasks --check -v ; do \
+	  ansible-playbook -i inventory/localhost.ini install_playbook.yml $$i; done
 
 .PHONY: ansible
 ansible:
-	./install_ansible.sh
+	./tools/install_ansible.sh
 
