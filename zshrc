@@ -1,3 +1,4 @@
+alias python="/usr/bin/python3"
 source /usr/local/opt/zsh-git-prompt/zshrc.sh
 setopt PROMPT_SUBST
 PS1='%F{green}[%n %F{cyan}%c%F{black}$(git_super_status)%F{green}]》%f'
