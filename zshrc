@@ -1,6 +1,7 @@
-source ~/.zsh/completion/git-prompt.sh
+alias python="/usr/bin/python3"
+source /usr/local/opt/zsh-git-prompt/zshrc.sh
 setopt PROMPT_SUBST
-PS1='%F{green}[%n %F{cyan}%c%F{red}$(__git_ps1 " %s")%F{green}]》%f'
+PS1='%F{green}[%n %F{cyan}%c%F{black}$(git_super_status)%F{green}]》%f'
 
 autoload -Uz compinit
 rm -f ~/.zcompdump
@@ -14,9 +15,6 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 setopt auto_cd
-alias dl="~/Downloads"
-alias dt="~/Desktop"
-
 setopt share_history
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
@@ -31,3 +29,4 @@ function peco-select-history() {
   zle clear-screen
 }
 bindkey '^r' peco-select-history
+

@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tags: macOS
+  connection: local
+  become: no
+  gather_facts: no
+  roles:
+    - homebrew
+    - dmg
+    - vim
+
