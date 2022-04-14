@@ -1,0 +1,11 @@
+- name: install
+  shell: | 
+    curl -O "{{ item.url }}"
+    hdiutil attach ./{{ item.name }}.dmg -nobrowse -mountpoint ./{{ item.name }}
+    cp -aR ./{{ item.name }}/*.app /Applications/{{ item.name }}.app
+    hdiutil detach ./{{ item.name }}/
+    rm -R ./{{ item.name }}.dmg
+  with_items: "{{ dmg }}"
+  when: 
+    - docker.stat.exists == False
+

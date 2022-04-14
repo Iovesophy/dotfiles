@@ -1,0 +1,9 @@
+---
+pkg:
+  - name: awscli
+  - name: node
+  - name: peco
+  - name: shellcheck
+  - name: vint
+  - name: zsh-git-prompt
+

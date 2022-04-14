@@ -1,0 +1,13 @@
+---
+- block:
+  - name: homebrew update/upgrade
+    homebrew:
+      update_homebrew: true
+      upgrade_all: yes
+  - name: homebrew install
+    homebrew:
+      name: "{{ item.name }}"
+    with_items: "{{ pkg }}"
+  tags:
+    - homebrew
+
