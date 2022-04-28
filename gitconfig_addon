@@ -1,8 +1,12 @@
 [alias]
 	lg = log --graph --date=short --format='%C(yellow)%h%C(reset)%C(magenta) [%ad]%C(reset)%C(auto)%d%C(reset) %s%C(cyan) @%an%C(reset)'
 	st = status
-	cm = commit
-	difff = diff --word-diff
-	today = log --oneline --since='12 hour ago'
+	cm = commit -m
+	sh = show -b
+	df = diff -b
+	sa = "!git show -b --reverse `git log --format='%h' --merges -n 1`.."
+	ra = "!git rebase -i `git log --format='%h' --merges -n 1`"
 [core]
 	quotepath = false
+[init]
+	defaultBranch = main
