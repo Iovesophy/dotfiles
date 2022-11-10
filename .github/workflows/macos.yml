@@ -1,16 +1,15 @@
 name: CI to MacOS
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-    build:
-        runs-on: macos-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v2
-            - name: Run
-              run: make
-
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Run
+        run: make
