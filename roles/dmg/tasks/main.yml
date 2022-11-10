@@ -1,7 +1,6 @@
 ---
 - block:
-  - include_tasks: check.yml
-  - include_tasks: install.yml
+    - include_tasks: check.yml
+    - include_tasks: install.yml
   tags:
     - dmg
-
