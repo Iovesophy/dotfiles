@@ -30,3 +30,4 @@ function peco-select-history() {
 }
 bindkey '^r' peco-select-history
 
+export DOCKER_HOST=$(limactl list docker --format 'unix://{{.Dir}}/sock/docker.sock')
