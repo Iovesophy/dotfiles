@@ -6,4 +6,4 @@ pkg:
   - name: shellcheck
   - name: vint
   - name: zsh-git-prompt
-
+  - name: neovim
