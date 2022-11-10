@@ -1,0 +1,26 @@
+- block:
+    - name: checklima
+      local_action: stat path=~/.lima/docker/docker.yaml
+      register: limadocker
+    - name: checkdocker
+      local_action: stat path=~/.docker/cli-plugins/docker-compose
+      register: dockercompose
+
+    - name: limadocker
+      shell: |
+        cd ~/.lima/docker
+        curl -O https://raw.githubusercontent.com/lima-vm/lima/master/examples/docker.yaml
+        limactl start ./docker.yaml
+
+      when:
+        - limadocker.stat.exists == False
+
+    - name: compose
+      shell: |
+        mkdir -p ~/.docker/cli-plugins/
+        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+        mkdir -p $DOCKER_CONFIG/cli-plugins
+        curl -SL https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-darwin-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+        chmod +x ~/.docker/cli-plugins/docker-compose
+      when:
+        - dockercompose.stat.exists == False

@@ -6,6 +6,6 @@
   gather_facts: no
   roles:
     - homebrew
-    - dmg
     - vim
+    - lima
 
