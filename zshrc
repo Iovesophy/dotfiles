@@ -1,7 +1,16 @@
-alias python="/usr/bin/python3"
-source /usr/local/opt/zsh-git-prompt/zshrc.sh
+source ~/.zsh/git-prompt.sh
+
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+autoload -Uz compinit && compinit
+
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
+
 setopt PROMPT_SUBST
-PS1='%F{green}[%n %F{cyan}%c%F{black}$(git_super_status)%F{green}]》%f'
+PS1='%F{green}[%n cicd/agent01 %F{cyan}%c%F{white}$(__git_ps1)%F{green}]>>%f'
 
 autoload -Uz compinit
 rm -f ~/.zcompdump
@@ -14,20 +23,25 @@ alias ls='ls -GF'
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt EXTENDED_HISTORY
+
 setopt auto_cd
 setopt share_history
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
-alias history="history 0"
 
-zle -N peco-select-history
 function peco-select-history() {
-  BUFFER=$(\history -n 1 | eval "tail -r" | peco --query "$LBUFFER")
+  BUFFER=$(\history -n 1 | tac | peco)
   CURSOR=$#BUFFER
   zle clear-screen
 }
+zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-export DOCKER_HOST=$(limactl list docker --format 'unix://{{.Dir}}/sock/docker.sock')
+# brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

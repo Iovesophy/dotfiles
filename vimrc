@@ -1,18 +1,3 @@
-"vim-plug Start.  https://github.com/junegunn/vim-plug
-call plug#begin('~/.vim/plugged')
-" ruby https://vimawesome.com/plugin/vim-ruby
-Plug 'vim-ruby/vim-ruby'
-" python https://vimawesome.com/plugin/python-mode
-Plug 'klen/python-mode'
-" C#
-Plug 'OmniSharp/omnisharp-vim'
-" markdown
-Plug 'plasticboy/vim-markdown'
-Plug 'kannokanno/previm'
-Plug 'tyru/open-browser.vim'
-Plug 'lambdalisue/gina.vim'
-call plug#end()
-" vim-plug Fin.
 " esc
 noremap <C-f> <esc>
 noremap! <C-f> <esc>

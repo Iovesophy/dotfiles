@@ -1,3 +1,0 @@
-- name: docker
-  local_action: stat path=/Applications/Docker.app
-  register: docker
