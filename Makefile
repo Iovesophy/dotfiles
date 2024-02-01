@@ -1,24 +1,21 @@
 EMAIL:=dotfiles@example.com
-
-all: ansible setup
+NAME:=dotfiles
 
 .PHONY: setup
-setup: test
-	./setup.sh $(EMAIL)
-
-.PHONY: test
-test: install
-	shellcheck ./tools/install_ansible.sh
-	shellcheck ./setup.sh
-	zsh -n zshrc
-	vint vimrc
+setup:
+	./setup.sh $(EMAIL) $(NAME)
+	-./tools/install_brew.sh
+	sudo update-alternatives --config editor
 
 .PHONY: install
 install:
-	for i in --syntax-check --list-tasks --check -v ; do \
-	  ansible-playbook -i inventory/localhost.ini install_playbook.yml $$i; done
-
-.PHONY: ansible
-ansible:
-	./tools/install_ansible.sh
+	sudo apt install -y vim
+	curl -fsSL https://get.docker.com -o get-docker.sh
+	./get-docker.sh
+	sudo groupadd docker
+	sudo usermod -aG docker $(USER)
+	sudo chown $(USER):$(USER) /home/$(USER)/.docker -R
+	mkdir -p /home/$(USER)/.docker
+	sudo chmod g+rwx $(HOME)/.docker -R
+	brew install peco
 
