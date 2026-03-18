@@ -1,5 +1,5 @@
 alias python="/usr/bin/python3"
-source /usr/local/opt/zsh-git-prompt/zshrc.sh
+source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
 setopt PROMPT_SUBST
 PS1='%F{green}[%n %F{cyan}%c%F{black}$(git_super_status)%F{green}]》%f'
 
@@ -30,4 +30,3 @@ function peco-select-history() {
 }
 bindkey '^r' peco-select-history
 
-export DOCKER_HOST=$(limactl list docker --format 'unix://{{.Dir}}/sock/docker.sock')
