@@ -7,5 +7,4 @@ pkg:
   - name: vint
   - name: zsh-git-prompt
   - name: neovim
-  - name: lima
-  - name: docker
+  - name: claude-code
